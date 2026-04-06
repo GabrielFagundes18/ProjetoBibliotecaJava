@@ -17,14 +17,15 @@ public class Main {
             System.out.print("Escolha uma opção: ");
             
             opcao = leitor.nextInt();
+            leitor.nextLine();
 
             switch (opcao) {
                 case 1:
-                    System.out.print("Título do Livro: ");
+                    System.out.println("Título do Livro: ");
                     String titulo = leitor.nextLine();
-                    System.out.print("Autor: ");
+                    System.out.println("Autor: ");
                     String autor = leitor.nextLine();
-                    System.out.print("ID (Ex: L01): ");
+                    System.out.println("ID (Ex: L01): ");
                     String id = leitor.nextLine();
 
                     Livro novoLivro = new Livro(titulo, id, autor);
