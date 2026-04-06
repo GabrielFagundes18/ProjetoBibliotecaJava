@@ -21,11 +21,11 @@ public class Main {
 
             switch (opcao) {
                 case 1:
-                    System.out.println("Título do Livro: ");
+                    System.out.print("Título do Livro: ");
                     String titulo = leitor.nextLine();
-                    System.out.println("Autor: ");
+                    System.out.print("Autor: ");
                     String autor = leitor.nextLine();
-                    System.out.println("ID (Ex: L01): ");
+                    System.out.print("ID (Ex: L01): ");
                     String id = leitor.nextLine();
 
                     Livro novoLivro = new Livro(titulo, id, autor);
