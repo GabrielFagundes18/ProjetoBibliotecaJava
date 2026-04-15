@@ -1,3 +1,4 @@
+
 public class Livro extends ItemBiblioteca {
     private String autor;
 
@@ -8,8 +9,8 @@ public class Livro extends ItemBiblioteca {
 
     @Override
     public void exibirDetalhes() {
-        System.out.println("LIVRO: " + getTitulo() + 
-                           " | Autor: " + autor + 
-                           " | Status: " + (isDisponivel() ? "Disponível" : "Emprestado"));
+        String status = isDisponivel() ? "🟢 DISPONÍVEL" : "🔴 EMPRESTADO";
+        System.out.printf("[%s] %-35s | Autor: %-20s | %s%n",
+                getId(), getTitulo(), autor, status);
     }
 }

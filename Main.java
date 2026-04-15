@@ -1,62 +1,52 @@
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class Main {
+    private static final BibliotecaService service = new BibliotecaService();
+
     public static void main(String[] args) {
-        Biblioteca minhaBiblioteca = new Biblioteca();
-        Scanner leitor = new Scanner(System.in);
-        int opcao = 0;
+        String[] opcoes = { "Cadastrar", "Empréstimo", "Devolução", "Ver Acervo", "Sair" };
 
-        System.out.println("=== BEM-VINDO AO SISTEMA DE BIBLIOTECA ===");
+        while (true) {
+            int escolha = JOptionPane.showOptionDialog(null,
+                    "O que deseja fazer hoje?",
+                    "Biblioteca Digital v1.0",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE,
+                    null, opcoes, opcoes[0]);
 
-        while (opcao != 5) {
-            System.out.println("\n1. Cadastrar Novo Livro");
-            System.out.println("2. Pegar Livro (Empréstimo)");
-            System.out.println("3. Devolver Livro");
-            System.out.println("4. Ver Itens na Biblioteca");
-            System.out.println("5. Sair");
-            System.out.print("Escolha uma opção: ");
-            
-            opcao = leitor.nextInt();
-            leitor.nextLine();
+            if (escolha == 4 || escolha == -1)
+                break;
 
-            switch (opcao) {
-                case 1:
-                    System.out.print("Título do Livro: ");
-                    String titulo = leitor.nextLine();
-                    System.out.print("Autor: ");
-                    String autor = leitor.nextLine();
-                    System.out.print("ID (Ex: L01): ");
-                    String id = leitor.nextLine();
+            switch (escolha) {
+                case 0 -> {
+                    String t = JOptionPane.showInputDialog("Título do Livro:");
+                    String a = JOptionPane.showInputDialog("Autor:");
+                    String i = JOptionPane.showInputDialog("ID:");
+                    if (t != null && a != null && i != null) {
+                        service.cadastrarLivro(t, a, i);
+                        JOptionPane.showMessageDialog(null, "Livro cadastrado com sucesso!");
+                    }
+                }
+                case 1 -> {
+                    String disponiveis = service.obterListaParaJanela(true);
+                    String busca = javax.swing.JOptionPane.showInputDialog(null,
+                            disponiveis + "\nDigite o título para empréstimo:",
+                            "Realizar Empréstimo", javax.swing.JOptionPane.QUESTION_MESSAGE);
 
-                    Livro novoLivro = new Livro(titulo, id, autor);
-                    minhaBiblioteca.adicionarItem(novoLivro);
-                    System.out.println("Livro cadastrado com sucesso!");
-                    break;
-
-                case 2:
-                    System.out.print("Digite o título do livro para empréstimo: ");
-                    String buscaEmprestimo = leitor.nextLine();
-                    minhaBiblioteca.emprestarItem(buscaEmprestimo);
-                    break;
-
-                case 3:
-                    System.out.print("Digite o título do livro para devolver: ");
-                    String buscaDevolucao = leitor.nextLine();
-                    minhaBiblioteca.devolverItem(buscaDevolucao);
-                    break;
-
-                case 4:
-                    minhaBiblioteca.mostrarAcervo();
-                    break;
-
-                case 5:
-                    System.out.println("Encerrando sistema...");
-                    break;
-
-                default:
-                    System.out.println("Opção inválida!");
+                    if (busca != null && !busca.isEmpty()) {
+                        service.emprestar(busca);
+                    }
+                }
+                case 2 -> {
+                    String busca = JOptionPane.showInputDialog("Título para devolução:");
+                    if (busca != null)
+                        service.devolver(busca);
+                }
+                case 3 -> {
+                    String acervo = service.obterListaParaJanela(false);
+                    JOptionPane.showMessageDialog(null, acervo);
+                }
             }
         }
-        leitor.close();
     }
 }

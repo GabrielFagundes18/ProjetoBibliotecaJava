@@ -1,3 +1,4 @@
+
 public abstract class ItemBiblioteca {
     private String titulo;
     private String id;
@@ -9,20 +10,20 @@ public abstract class ItemBiblioteca {
         this.disponivel = true;
     }
 
-    public String getTitulo() { 
-        return titulo; 
+    public String getTitulo() {
+        return titulo;
     }
 
-    public String getId() { 
-        return id; 
+    public String getId() {
+        return id;
     }
 
-    public boolean isDisponivel() { 
-        return disponivel; 
+    public boolean isDisponivel() {
+        return disponivel;
     }
 
-    public void setDisponivel(boolean disponivel) { 
-        this.disponivel = disponivel; 
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
     }
 
     public abstract void exibirDetalhes();
