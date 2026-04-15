@@ -4,7 +4,7 @@ public class Main {
     private static final BibliotecaService service = new BibliotecaService();
 
     public static void main(String[] args) {
-        String[] opcoes = { "Cadastrar", "Empréstimo", "Devolução", "Ver Acervo", "Sair" };
+        String[] opcoes = { "Cadastrar", "Empréstimo", "Devolução", "Lista De Livros", "Sair" };
 
         while (true) {
             int escolha = JOptionPane.showOptionDialog(null,

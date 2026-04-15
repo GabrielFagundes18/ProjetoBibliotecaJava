@@ -16,18 +16,18 @@ public class BibliotecaService {
             if (item.isDisponivel()) {
                 item.setDisponivel(false);
                 JOptionPane.showMessageDialog(null,
-                        "✅ Livro emprestado com sucesso!\n" +
+                        " Livro emprestado com sucesso!\n" +
                                 "Título: " + item.getTitulo() + "\n" +
                                 "ID: " + item.getId(),
                         "Empréstimo Confirmado", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null,
-                        "⚠️ O livro '" + item.getTitulo() + "' já está emprestado!",
+                        "O livro '" + item.getTitulo() + "' já está emprestado!",
                         "Aviso", JOptionPane.WARNING_MESSAGE);
             }
         }, () -> {
             JOptionPane.showMessageDialog(null,
-                    "❌ Livro não encontrado no sistema.",
+                    " Livro não encontrado no sistema.",
                     "Erro", JOptionPane.ERROR_MESSAGE);
         });
     }
@@ -37,7 +37,7 @@ public class BibliotecaService {
             if (!item.isDisponivel()) {
                 item.setDisponivel(true);
                 JOptionPane.showMessageDialog(null,
-                        "✅ Devolução realizada!\nLivro: " + item.getTitulo(),
+                        " Devolução realizada!\nLivro: " + item.getTitulo(),
                         "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null,
@@ -46,14 +46,14 @@ public class BibliotecaService {
             }
         }, () -> {
             JOptionPane.showMessageDialog(null,
-                    "❌ Título inválido ou não encontrado.",
+                    " Título inválido ou não encontrado.",
                     "Erro", JOptionPane.ERROR_MESSAGE);
         });
     }
 
     public String obterListaParaJanela(boolean apenasDisponiveis) {
         StringBuilder sb = new StringBuilder();
-        sb.append(apenasDisponiveis ? "--- LIVROS PARA EMPRÉSTIMO ---\n" : "--- ACERVO COMPLETO ---\n");
+        sb.append(apenasDisponiveis ? " LIVROS PARA EMPRÉSTIMO \n" : " LISTA COMPLETA \n");
         sb.append(String.format("%-10s | %-5s | %s\n", "STATUS", "ID", "TÍTULO"));
         sb.append("-".repeat(40)).append("\n");
 
