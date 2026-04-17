@@ -2,6 +2,7 @@ import java.util.*;
 
 public class BibliotecaRepository {
     private final List<ItemBiblioteca> acervo = new ArrayList<>();
+    private final List<Clientes> clientes = new ArrayList<>();
 
     public void adicionar(ItemBiblioteca item) {
         acervo.add(item);
@@ -16,4 +17,10 @@ public class BibliotecaRepository {
                 .filter(i -> i.getTitulo().equalsIgnoreCase(titulo))
                 .findFirst();
     }
+
+    public List<Clientes> listarClientes() {
+        return new ArrayList<>(clientes);
+    }
+    
 }
+    
